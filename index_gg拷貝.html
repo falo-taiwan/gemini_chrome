@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Force Cheng x Falo 教學展示用：Chrome Glic 顯示判定研究、AI 人機協作、範例學習與遷移學習案例。">
+  <meta name="keywords" content="Force Cheng, Falo, Chrome Glic, Gemini in Chrome, AI 教學展示用, 人機協作, 範例學習, 遷移學習, 系統架構, Chrome 設定研究">
+  <meta name="author" content="Force Cheng x Falo">
+  <meta name="copyright" content="Force Cheng x Falo 版權宣告 2026/4/22，教學展示用">
+  <meta name="robots" content="index,follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  <meta name="geo.position" content="23.6978;120.9605">
+  <meta name="ICBM" content="23.6978, 120.9605">
+  <meta property="og:title" content="Chrome Glic 顯示判定研究">
+  <meta property="og:description" content="Force Cheng x Falo 教學展示用：AI 人機協作、範例學習與遷移學習案例。">
+  <meta property="og:type" content="article">
+  <title>Chrome Glic 顯示判定研究</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf9;
+      --ink: #1f2937;
+      --muted: #5f6b7a;
+      --line: #ddd3c5;
+      --accent: #0f766e;
+      --accent-soft: #def3ef;
+      --code: #f2ede3;
+      --shadow: 0 18px 44px rgba(36, 38, 41, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.10), transparent 30%),
+        linear-gradient(180deg, #f8f5ed 0%, #f0ebe0 100%);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(255, 253, 249, 0.95));
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: #fffaf2;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric span {
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", "Menlo", "Monaco", monospace;
+    }
+
+    code {
+      background: var(--code);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    pre {
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .quote {
+      border-left: 4px solid var(--accent);
+      padding-left: 16px;
+      color: #174e49;
+      font-weight: 600;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .download-link:hover {
+      filter: brightness(0.96);
+    }
+
+    .copyright-banner,
+    .copyright-footer {
+      color: #b91c1c;
+      font-weight: 800;
+      border: 1px solid rgba(185, 28, 28, 0.22);
+      background: #fff1f1;
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .copyright-footer {
+      margin-top: 18px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="copyright-banner">Force Cheng x Falo 版權宣告 2026/4/22｜教學展示用</div>
+
+    <section class="hero">
+      <div class="tag">Internal Reference</div>
+      <h1>Chrome Glic 顯示判定研究</h1>
+      <p>這是一份給內部團隊的案例文件，用來說明：當功能原本能用、後來卻不顯示時，如何從系統角度研究顯示判定邏輯，並把結果沉澱成可重複使用的備份、還原與報告工具。</p>
+    </section>
+
+    <section class="card">
+      <h2>資源包下載</h2>
+      <p>本案例的最小參考資料包已整理成 ZIP，內容包含對外閱讀用文件、Mac / Windows 參考說明，以及安全的備份與檢查工具。</p>
+      <p>這個資源包適合用於內部教學、團隊交接、範例學習與跨平台遷移學習，不包含個人 Chrome profile 原始備份資料。</p>
+      <a class="download-link" href="https://drive.google.com/file/d/1BM9GTEKTF3LY_k9p_bHEJW2YGOEcw4HC/view?usp=sharing" target="_blank" rel="noopener noreferrer">下載 Google Drive 資源包</a>
+    </section>
+
+    <section class="card">
+      <h2>1. 背景與研究動機</h2>
+      <p>這次的出發點不是為了追求一次性的畫面恢復，而是因為出現了一個很值得研究的現象：美國朋友先前可以正常使用 Chrome Gemini / Glic 相關功能，但同樣的使用情境到了台灣後，功能入口消失或無法顯示。雖然台灣後來已經開放相關能力，但開放不代表每一位使用者、每一個 Profile、每一台裝置都會立即可用。</p>
+      <p>Force 因此把這個案例整理成一個 AI 人機協作示範：用真實問題當案例，用 AI 協作拆解系統層次，用範例學習整理可觀察參數，再用遷移學習把 Mac 經驗延伸到 Windows / Win365，最後把結果整理成文件、工具與可交接的 zip 壓縮包。</p>
+      <div class="quote">真正要研究的不是「功能有沒有存在」，而是「系統根據哪些狀態決定要不要顯示它」。</div>
+    </section>
+
+    <section class="card">
+      <h2>2. 專案定位</h2>
+      <p>這不是「找一個神奇參數」的故事，而是「把一個真實問題轉成可教學、可遷移、可重複驗證的系統研究流程」。</p>
+      <ol>
+        <li>對初學者：學會看系統層次，而不是只找單一開關。</li>
+        <li>對團隊：學會用 AI 協作建立可交接資產。</li>
+        <li>對工程實務：學會先備份、再觀察、再比較、最後才決定是否修改。</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>3. 研究問題怎麼定義</h2>
+      <p>把問題定義好，比直接動手更重要。這次我們不是直接問「怎麼把畫面叫出來」，而是把問題拆成三個研究問題：</p>
+      <ol>
+        <li>Chrome 的哪一層狀態在影響 Glic 顯示？</li>
+        <li>哪些狀態是全域的，哪些是 Profile 專屬的？</li>
+        <li>哪些流程值得自動化，讓團隊之後可以重複使用？</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>4. 系統分層觀點</h2>
+      <div class="grid">
+        <div class="metric">
+          <strong>全域狀態層</strong>
+          <span>Local State</span>
+        </div>
+        <div class="metric">
+          <strong>Profile 層</strong>
+          <span>Preferences</span>
+        </div>
+        <div class="metric">
+          <strong>顯示控制層</strong>
+          <span>Experiments / Eligibility</span>
+        </div>
+      </div>
+      <p>這三層一起看，才比較接近真實系統，而不是只看單一欄位。</p>
+    </section>
+
+    <section class="card">
+      <h2>5. 這次觀察的關鍵狀態</h2>
+      <ul>
+        <li><code>variations_country</code></li>
+        <li><code>variations_safe_seed_permanent_consistency_country</code></li>
+        <li><code>variations_safe_seed_session_consistency_country</code></li>
+        <li><code>glic.is_glic_eligible</code></li>
+        <li><code>glic.launcher_enabled</code></li>
+        <li><code>profile.info_cache.&lt;profile&gt;.is_glic_eligible</code></li>
+        <li><code>browser.enabled_labs_experiments</code></li>
+      </ul>
+      <p>這些欄位的重點不在於背下來，而在於理解它們代表的是不同層次的判定訊號。</p>
+    </section>
+
+    <section class="card">
+      <h2>6. 技術細節補充</h2>
+      <p>以下內容是這次排查中整理出的技術線索，適合給需要更深入理解的內部同仁參考。它們代表的是本次本機觀察與除錯推論，而不是產品官方保證。</p>
+      <p><strong>地區判定三位一體：</strong> 在 <code>Local State</code> 中，<code>variations_country</code>、<code>variations_safe_seed_permanent_consistency_country</code>、<code>variations_safe_seed_session_consistency_country</code> 應被視為一組一致性訊號，而不是三個彼此獨立的欄位。從研究角度來看，真正有意義的是它們是否彼此一致。</p>
+      <p><strong>全域資格與 Profile 資格：</strong> <code>glic.is_glic_eligible</code> 與 <code>glic.launcher_enabled</code> 比較像全域層條件；而 <code>profile.info_cache</code> 中每個 Profile 的 <code>is_glic_eligible</code>，則更像是帳號 / Profile 層條件。這次案例中，不同 Profile 的值並不一致，這很值得團隊記住。</p>
+      <p><strong>Labs 狀態觀察：</strong> 即使 <code>chrome://flags</code> 不一定看得到所有名稱，<code>browser.enabled_labs_experiments</code> 仍然能作為本機實驗狀態的比對基準。它不是唯一真相，但非常適合作為本機側的線索來源。</p>
+      <p><strong>殘留 UI 訊號：</strong> 像 <code>in_product_help.new_badge.Glic</code>、<code>optimization_guide.previously_registered_optimization_types</code> 這類欄位，值得拿來判斷功能是否曾經進入初始化或註冊流程。如果這些痕跡存在，但畫面沒出來，代表問題可能落在更後段的顯示條件。</p>
+      <p><strong>為什麼要用結構化解析：</strong> <code>Local State</code> 往往是大型單行 JSON，還夾帶種子、簽章與模型資料。這使得傳統文字搜尋只適合粗查，不適合當作可靠分析方式。因此本次排查較多使用 Python 做結構化解析與精準輸出。</p>
+      <p><strong>系統設定只講概念：</strong> 作業系統語言、作業系統地區、Chrome app language、Profile language 與啟動環境都屬於外部訊號。內部文件不需要寫成逐步修改系統設定的教學，但需要保留可觀察參數，方便團隊做 before / after 比對。</p>
+      <pre>Local State:
+variations_country
+variations_safe_seed_permanent_consistency_country
+variations_safe_seed_session_consistency_country
+variations_safe_seed_locale
+variations_safe_seed_milestone
+variations_seed_milestone
+variations_sticky_studies
+glic
+glic.is_glic_eligible
+glic.launcher_enabled
+profile.last_used
+profile.last_active_profiles
+profile.info_cache.&lt;profile&gt;.name
+profile.info_cache.&lt;profile&gt;.user_name
+profile.info_cache.&lt;profile&gt;.is_glic_eligible
+browser.enabled_labs_experiments
+
+Profile Preferences:
+intl.accept_languages
+intl.selected_languages
+spellcheck.dictionaries
+browser.gemini_settings
+glic.completed_fre
+glic.pinned_to_tabstrip
+glic.launcher_enabled
+glic.tab_context_enabled
+glic.default_tab_context_enabled
+glic.keep_sidepanel_open_on_new_tabs_enabled
+glic.user_status
+in_product_help.new_badge.Glic
+optimization_guide
+optimization_guide.previously_registered_optimization_types
+
+System / launch observation:
+Global AppleLanguages
+Global AppleLocale
+com.google.Chrome AppleLanguages
+com.google.Chrome AppleLocale
+Windows culture
+Windows UI culture
+Windows home location
+Windows language list
+Chrome executable path
+Chrome version
+Chrome running process list
+--profile-directory
+--lang
+--accept-lang
+--variations-override-country
+--enable-features
+--disable-features
+--glic-dev</pre>
+    </section>
+
+    <section class="card">
+      <h2>7. 工具如何分工</h2>
+      <div class="grid">
+        <div class="metric">
+          <strong>Antigravity</strong>
+          <span>解析與參數研究</span>
+        </div>
+        <div class="metric">
+          <strong>Codex</strong>
+          <span>自動化、備份、還原、文件化</span>
+        </div>
+      </div>
+      <p>Antigravity 較適合快速解析目前狀態與驗證哪些參數值得關注。Codex 較適合把這些發現整理成工程化流程，例如備份腳本、還原腳本、報告輸出與內部教學文件。</p>
+      <p>還有一個很實際的原因：當設定檔是大型單行 JSON 時，真正有效率的不是手動搜尋，而是讓擅長結構化解析的工具處理，再由擅長工程化的工具把結果沉澱成腳本與文件。</p>
+    </section>
+
+    <section class="card">
+      <h2>8. 實際流程</h2>
+      <ol>
+        <li>先確定研究目標是「理解顯示判定」，不是只追求一次性的操作。</li>
+        <li>盤點關鍵檔案：<code>Local State</code>、<code>Local State.bak</code>、<code>Profile 11/Preferences</code>。</li>
+        <li>觀察全域狀態、Profile 狀態、labs / experiments、地區一致性欄位與 eligibility 欄位。</li>
+        <li>把一次性操作沉澱成可重複的備份與還原工具。</li>
+        <li>把結果輸出成 ZIP、Markdown、HTML，讓資訊可交接、可教學。</li>
+      </ol>
+      <p>更細一點來看，第三步其實是在回答三個問題：地區一致性是否對得起來、全域資格與 Profile 資格是否一致、功能是完全沒載入還是已載入但被最後的顯示條件擋下。</p>
+    </section>
+
+    <section class="card">
+      <h2>9. Codex 產出的程式與資產</h2>
+      <p>這次不是只留下操作紀錄，而是留下可重用資產：</p>
+      <ul>
+        <li><code>backup_chrome_settings.command</code>：關閉 Chrome 後，建立精確到秒的備份、ZIP、報告與 log。</li>
+        <li><code>restore_chrome_settings.command</code>：固定列出備份選單、要求確認、先做 safety backup，再執行還原。</li>
+        <li><code>reports/</code>：自動產生的 Markdown / HTML 報告。</li>
+        <li><code>backup/</code>：ZIP 備份與操作 log。</li>
+      </ul>
+      <pre>/Users/force/AI-CodeX/Agent_news/gemini_chrome/tools/backup_chrome_settings.command
+/Users/force/AI-CodeX/Agent_news/gemini_chrome/tools/restore_chrome_settings.command</pre>
+    </section>
+
+    <section class="card">
+      <h2>10. 自動化設計重點</h2>
+      <p><strong>備份腳本的價值</strong> 不只是把檔案複製出來，而是把當下狀態封裝成完整研究快照：包含 snapshot、ZIP、Markdown / HTML 報告與 log。</p>
+      <p><strong>安全還原機制</strong> 則體現了防禦式設計。還原前先建立 safety backup，代表即使選錯備份或還原後要回頭，也還有補救空間。在會覆蓋真實資料的流程裡，這種「先保護、再操作」的思維非常值得團隊保留。</p>
+    </section>
+
+    <section class="card">
+      <h2>11. 兩個很值得教學的實務問題</h2>
+      <p><strong>問題一：</strong> macOS 預設 Bash 太舊，不支援 <code>mapfile</code>。這提醒我們腳本相容性本身就是產品品質的一部分。</p>
+      <p><strong>問題二：</strong> 還原流程需要一致性。即使只有一個備份，也仍然要顯示編號選單，這樣在少量與大量備份時，操作體驗才會一致。</p>
+    </section>
+
+    <section class="card">
+      <h2>12. 這個案例最值得團隊學的三件事</h2>
+      <ol>
+        <li>先問系統如何判定，再談如何處理結果。</li>
+        <li>研究不是終點，能否沉澱成工具與文件才是真正價值。</li>
+        <li>工具分工比工具崇拜重要。不同 AI 工具應該用在不同階段。</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>13. 可直接放進簡報的一句話</h2>
+      <pre>這次案例不是在追求單次修復，而是在研究 Chrome 以哪些本機狀態來判定 Glic 是否顯示，並把研究流程沉澱成可重複的備份、還原與報告工具。</pre>
+    </section>
+
+    <div class="copyright-footer">Force Cheng x Falo 版權宣告 2026/4/22｜本頁僅供教學展示、案例研究與內部學習使用</div>
+  </div>
+</body>
+</html>
