@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Force Cheng x Falo 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。">
-  <meta name="keywords" content="Force Cheng, Falo, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版">
-  <meta name="author" content="Force Cheng x Falo">
-  <meta name="copyright" content="Force Cheng x Falo 版權宣告 2026/6/7，教學展示用">
+  <meta name="description" content="Falo x Force Cheng 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。">
+  <meta name="keywords" content="Falo, Force Cheng, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版">
+  <meta name="author" content="Falo x Force Cheng">
+  <meta name="copyright" content="Falo x Force Cheng 版權宣告 2026/6/6，教學展示用">
   <meta name="robots" content="index,follow">
   <meta name="geo.region" content="TW">
   <meta name="geo.placename" content="Taiwan">
@@ -235,7 +235,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="copyright-banner">Force Cheng x Falo 版權宣告 2026/6/7｜教學展示用</div>
+    <div class="copyright-banner">Falo x Force Cheng 版權宣告 2026/6/6｜教學展示用</div>
 
     <section class="hero">
       <div class="tag">Universal Version Update</div>
@@ -271,6 +271,23 @@
         <a class="download-link secondary" href="patch_glic.command" download="patch_glic.command">🍎 下載 patch_glic.command (Mac 啟動器)</a>
         <a class="download-link secondary" href="patch_glic.bat" download="patch_glic.bat">💻 下載 patch_glic.bat (Windows 啟動器)</a>
       </div>
+
+      <details style="margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fffcf7;">
+        <summary style="font-weight: 700; color: var(--accent); cursor: pointer; user-select: none;">🔍 檢視三隻程式碼的用途與核心邏輯 (點擊展開)</summary>
+        <div style="margin-top: 12px; font-size: 15px; color: var(--ink);">
+          <ul style="padding-left: 20px;">
+            <li><strong>🐍 patch_glic.py (通用 Python 核心)</strong>：
+              <br>負責執行核心判定與修改邏輯。它會自動偵測作業系統（Windows / macOS），定位到對應的 Chrome <code>Local State</code> 設定檔路徑。讀取 JSON 後，將地區鎖偽裝為美國 (<code>us</code>)，開啟 <code>glic</code> 的 eligibility 權限，並將所有 Profiles 的使用資格設為 <code>True</code>，最後安全寫回檔案。
+            </li>
+            <li style="margin-top: 12px;"><strong>🍎 patch_glic.command (macOS 啟動器)</strong>：
+              <br>Mac 雙擊執行的 Shell 腳本。它會切換至當前資料夾，並執行 <code>python3 patch_glic.py</code>。此檔案作為 Mac 用戶一鍵運行的包裝器。
+            </li>
+            <li style="margin-top: 12px;"><strong>💻 patch_glic.bat (Windows 啟動器)</strong>：
+              <br>Windows 雙擊執行的批次檔。它會切換至當前資料夾，並執行 <code>python patch_glic.py</code>。此檔案作為 Windows 用戶一鍵運行的包裝器。
+            </li>
+          </ul>
+        </div>
+      </details>
     </section>
 
     <section class="card">
@@ -339,7 +356,7 @@
 }</pre>
     </section>
 
-    <div class="copyright-footer">Force Cheng x Falo 版權宣告 2026/6/7｜本頁僅供教學展示、案例研究與內部學習使用</div>
+    <div class="copyright-footer">Falo x Force Cheng 版權宣告 2026/6/6｜本頁僅供教學展示、案例研究與內部學習使用</div>
   </div>
 </body>
 </html>

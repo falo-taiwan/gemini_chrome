@@ -1,3 +1,12 @@
+# ==============================================================================
+#  Copyright (c) Falo x Force Cheng 2026/6/6. All rights reserved.
+#  
+#  Description: 
+#    Chrome Glic (Gemini Live in Chrome) Region Bypass Core Python Script.
+#    This script automatically detects the host operating system (macOS/Windows)
+#    and updates the Chrome 'Local State' config file to override region checks.
+# ==============================================================================
+
 import json
 import os
 import sys
