@@ -279,12 +279,14 @@
       
       <div class="grid">
         <div class="metric">
-          <strong>🍎 macOS 執行方式</strong>
+          <strong>🍎 macOS 執行方式 (包含 Sequoia 新安全設定)</strong>
           <span>
             <ol>
               <li>將上述三個檔案下載並放在同一個資料夾。</li>
-              <li>在 Finder 中對 <code>patch_glic.command</code> 連點兩下。</li>
-              <li>系統會自動：關閉 Chrome ➡️ 修改設定 ➡️ 自動重啟 Chrome 並加載 Glic。</li>
+              <li>在 Finder 中對 <code>patch_glic.command</code> 連點兩下，系統會跳出安全性警告（請點選「完成」或關閉警告）。</li>
+              <li>開啟 Mac 的 <strong>「系統設定 (System Settings)」 ➡️ 「隱私權與安全性 (Privacy & Security)」</strong>。</li>
+              <li>往下拉找到 <strong>「安全性 (Security)」</strong> 區段，點擊 <strong>「仍要開啟 (Open Anyway)」</strong>，並輸入密碼或使用 Touch ID。</li>
+              <li>重新雙擊 <code>patch_glic.command</code> 即可順利執行：關閉 Chrome ➡️ 修改設定 ➡️ 重啟 Chrome。</li>
             </ol>
           </span>
         </div>
@@ -306,12 +308,13 @@
       <p>如果使用者的電腦因為以下因素，導致無法執行上述雙擊程式：</p>
       <ul>
         <li>環境中沒有安裝 <code>python3</code> 或環境變數未正確設定。</li>
-        <li>執行權限被系統（如 macOS Gatekeeper 或 Windows Defender）阻擋。</li>
+        <li><strong>系統安全阻擋升級</strong>：例如在 <strong>macOS Sequoia (或更新版本)</strong> 中，Apple 已正式**移除了按住 Control (右鍵) 直接強制開啟的快速捷徑**，使用者必須手動進入「系統設定」內層進行繁瑣的操作，增加了操作門檻。</li>
+        <li>執行權限被系統安全軟體（如 Windows Defender）完全封鎖。</li>
         <li>Chrome 設定檔結構在未來更新後發生劇烈改變，導致腳本解析出錯。</li>
       </ul>
       
       <h3>為什麼要委託 AI Agent 協助？</h3>
-      <p>一般使用者在遇到自動化程式報錯時，通常無力閱讀原始碼或手動解析數十萬字元的單行 JSON 設定檔。而您電腦中的 **AI Agent**（例如內建的終端開發助手，或具備本機檔案讀寫權限的 AI 助理）擁有比單純的 Shell 腳本更靈活的推理與操作能力。</p>
+      <p>在安全性不斷提高的現代作業系統中（如 macOS Sequoia），手動繞過安全機制的門檻愈來愈高，且一般使用者在遇到自動化程式報錯時，通常無力手動解析數十萬字元的單行 JSON 設定檔。而您電腦中的 **AI Agent**（例如內建的終端開發助手，或具備本機檔案讀寫權限的 AI 助理）擁有更靈活的推理能力，能直接讀取診斷日誌並在後台代為執行精準修復，省去繁瑣的手動設定流程。</p>
 
       <h3>委託 AI Agent 的操作方法（概念性架構）：</h3>
       <div class="quote">
