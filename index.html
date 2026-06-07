@@ -324,21 +324,30 @@
     <!-- 2. 人機協作 (HITL) 與 AI Agent 接手機制 -->
     <section class="card">
       <h2>🤝 人機協作（HITL）與 AI Agent 接手概念</h2>
-      <p>現代化運維不應僅僅依賴人工，也不應迷信 100% 完美的自動化。本專案導入了 <strong>Human-in-the-Loop (HITL)</strong> 的分層處理概念：</p>
+      <p>現代化運維不應僅僅依賴人工，也不應迷信 100% 完美的自動化。本專案展示了從「複雜終端機指令」走向「AI 時代人機協同」的演進歷程：</p>
       
       <div class="grid">
         <div class="metric">
-          <strong>第一層：人機協同自動化</strong>
-          <span>使用者雙擊執行一鍵修正檔（如 <code>.command</code> 或 <code>.bat</code>），系統自動呼叫 Python 核心嘗試在 2 秒內完成自動化修復。</span>
+          <strong>1. 傳統模式：終端機執行</strong>
+          <span>最初的修復方式需要使用者自行打開終端機（Terminal/CMD），手動輸入 <code>python3 patch_glic.py</code> 或執行權限指令。這對非技術背景的用戶具有極高的操作門檻。</span>
         </div>
         <div class="metric">
-          <strong>第二層：AI Agent 故障接管</strong>
-          <span>若環境受阻（例如 macOS Sequoia 移除了右鍵 bypass 快速捷徑，造成操作門檻大增），腳本會生成結構化的診斷檔，並將意圖委託給本機的 AI Agent。</span>
+          <strong>2. 極簡入口：一鍵雙擊執行</strong>
+          <span>為降低門檻，我們將複雜指令包裝為 Mac (<code>.command</code>) 與 Win (<code>.bat</code>) 雙擊啟動檔，為用戶提供極簡的單一執行入口。</span>
+        </div>
+        <div class="metric">
+          <strong>3. 安全機制：系統防禦阻擋</strong>
+          <span>然而，現代作業系統（如 macOS Sequoia、Windows Defender）為防範惡意軟體，會預設封鎖所有從網路下載的指令檔，使「一鍵執行」卡在安全驗證關卡。</span>
         </div>
       </div>
 
-      <h3>為什麼需要 AI Agent 協助？</h3>
-      <p>隨著作業系統安全性不斷提高（例如 macOS Sequoia Gatekeeper 的嚴格限制），手動繞過安全機制的門檻愈來愈高。一般使用者在遇到自動化腳本報錯時，往往無力手動解析數十萬字元的單行 JSON 設定檔。而本機環境的 <strong>AI Agent</strong> 擁有彈性的推理能力，能直接讀取 <code>glic_diagnostics.json</code>，並調用自身的 file_edit 工具在背景直接執行設定覆寫，徹底解決操作門檻問題。</p>
+      <h3>🛡️ 安全機制下，AI Agent 協同的解決模式</h3>
+      <p>當「便利性」與「作業系統安全機制」產生衝突時，傳統做法是強迫使用者去閱讀複雜的錯誤代碼、上網查指令手動排解。但在 AI 時代，我們推薦使用 <strong>AI Agent 協同降級（Fallback）機制</strong>：</p>
+      <div class="quote">
+        <strong>AI Agent 的安全橋樑角色</strong>：<br>
+        雖然雙擊外殼檔（.command / .bat）被作業系統阻擋，但 Python 本身是系統信任的簽署二進位檔。此時，使用者只需將任務委託給本機環境中運行的 <strong>AI Agent</strong>。<br>
+        由於 AI Agent 擁有本機的環境執行工具，它可以在背景代替使用者直接執行 <code>python3 patch_glic.py</code>，或者自動幫下載的啟動檔執行 <code>xattr -d</code> 移除隔離屬性。<strong>AI Agent 作為可信賴的代理執行者，完美繞過了作業系統對圖形介面雙擊的安全封鎖，解決了安全與便利的衝突。</strong>
+      </div>
     </section>
 
     <!-- 3. 通用型資源下載 -->
