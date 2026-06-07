@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="FALO 案例資產化研究：從真實故障（Chrome Glic）到 FALO 能力包（Capability Pack）的轉化歷程與人機協作（HITL）實踐。">
-  <meta name="keywords" content="FALO Methodology, Fast Audit Lean Open, Capability Pack, AI Agent, Human-in-the-Loop, HITL, KM, Runtime, Chrome Glic">
+  <meta name="description" content="FALO 案例資產化研究：從真實故障（Chrome 內建 Gemini 智慧側邊欄）到 FALO 能力包（Capability Pack）的轉化歷程與人機協作（HITL）實踐。">
+  <meta name="keywords" content="FALO Methodology, Fast Audit Lean Open, Capability Pack, AI Agent, Human-in-the-Loop, HITL, KM, Runtime, Chrome 內建 Gemini 智慧側邊欄">
   <meta name="author" content="Falo x Force Cheng">
   <meta name="copyright" content="Falo x Force Cheng 版權宣告 2026/6/6，教學展示用">
   <meta name="robots" content="index,follow">
@@ -281,11 +281,11 @@
     <section class="hero">
       <div class="tag">FALO Methodology Case Study</div>
       <h1>從故障到能力包：FALO 精神的案例實踐</h1>
-      <p>這不是一份單純的「Chrome Glic 修復指南」，而是 FALO 如何將一個日常技術障礙，透過範例學習與遷移學習，轉化為可教學、可複製、可交接且由 AI Agent 運行的「能力包（Capability Pack）」的資產化歷程。</p>
+      <p>這不是一份單純的「Chrome 內建 Gemini 智慧側邊欄 修復指南」，而是 FALO 如何將一個日常技術障礙，透過範例學習與遷移學習，轉化為可教學、可複製、可交接且由 AI Agent 運行的「能力包（Capability Pack）」的資產化歷程。</p>
     </section>
 
     <div class="quote">
-      <strong>FALO 的核心訊息</strong>：我們真正想展示的不是 Glic 本身的修復，而是我們如何將一次偶然的問題排查，解構、提煉並沉澱為一套能讓其他人（人機協作）甚至 AI 代理（AI Agent）複製成功的體系化能力。
+      <strong>FALO 的核心訊息</strong>：我們真正想展示的不是 Gemini 智慧側邊欄 本身的修復，而是我們如何將一次偶然的問題排查，解構、提煉並沉澱為一套能讓其他人（人機協作）甚至 AI 代理（AI Agent）複製成功的體系化能力。
     </div>
 
     <!-- 1. 《從故障到能力包》流程圖 -->
@@ -296,11 +296,11 @@
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-title">層次一：真實問題（Problem）➡️ 啟動研究</div>
-          <div class="timeline-desc">使用者面臨 Chrome Glic (Gemini Live in Chrome) 故障無法使用。不滿足於表面修復，而是以此為研究起點，探究底層機制的判定邏輯。</div>
+          <div class="timeline-desc">使用者面臨 Chrome 內建 Gemini 智慧側邊欄 (Gemini in Chrome) 故障無法使用。不滿足於表面修復，而是以此為研究起點，探究底層機制的判定邏輯。</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-title">層次二：問題分析（Analysis）➡️ 形成 Know-how</div>
-          <div class="timeline-desc">深入分析 <code>Local State</code> 全域設定檔與 <code>Preferences</code> 檔案，找出「地區一致性驗證」與「Glic 使用資格」的判定公式，形成第一版系統分析報告。</div>
+          <div class="timeline-desc">深入分析 <code>Local State</code> 全域設定檔與 <code>Preferences</code> 檔案，找出「地區一致性驗證」與「Gemini 智慧側邊欄 使用資格」的判定公式，形成第一版系統分析報告。</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-title">層次三：工具化（Toolization）➡️ 降低人工門檻</div>
@@ -308,7 +308,7 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-title">層次四：診斷化（Diagnostization）➡️ 讓 AI Agent 接手</div>
-          <div class="timeline-desc">傳統腳本如果失敗，人工便無能為力。我們設計了 <code>glic_diagnostics.json</code> 結構化診斷標準，一旦腳本執行異常，即主動向本機環境的 AI Agent 交接，讓 AI Agent 具備代為執行的能力。</div>
+          <div class="timeline-desc">傳統腳本如果失敗，人工便無能為力。我們設計了 <code>gemini_chrome_diagnostics.json</code> 結構化診斷標準，一旦腳本執行異常，即主動向本機環境的 AI Agent 交接，讓 AI Agent 具備代為執行的能力。</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-title">層次五：知識資產化（Assetization）➡️ 文件化與維護</div>
@@ -408,18 +408,18 @@
       </div>
     </section>
 
-    <!-- 4. 系統分析與 Glic 技術細節 -->
+    <!-- 4. 系統分析與 Gemini 智慧側邊欄 技術細節 -->
     <section class="card">
-      <h2>📝 知識資產化：系統分層觀點與 Glic 技術細節</h2>
+      <h2>📝 知識資產化：系統分層觀點與 Gemini 智慧側邊欄 技術細節</h2>
       <p>這是我們分析 `Local State` 設定檔後所沉澱的技術參數，作為內部團隊進行遷移學習與深入研究的知識資產（KM）：</p>
       
       <pre>Local State 全域設定：
 - variations_country (全域地區標記)
 - variations_permanent_consistency_country (版本永久地區鎖)
-- glic.is_glic_eligible (全域 Glic 資格)
+- glic.is_glic_eligible (全域 Gemini 智慧側邊欄 資格)
 - glic.launcher_enabled (全域啟動器啟用狀態)
-- profile.info_cache.&lt;profile&gt;.is_glic_eligible (各 Profile 個別 Glic 資格)
-- browser.enabled_labs_experiments (已開啟的實驗旗標，包括 glic-actor@1 等)
+- profile.info_cache.&lt;profile&gt;.is_glic_eligible (各 Profile 個別 Gemini 智慧側邊欄 資格)
+- browser.enabled_labs_experiments (已開啟的實驗旗標，包括 glic-actor@1 (Chrome Gemini 智慧側邊欄旗標) 等)
 
 系統外部訊號：
 - macOS AppleLocale / AppleLanguages
@@ -431,7 +431,7 @@
     <!-- 5. 歷史存檔與啟動連結 -->
     <section class="card">
       <h2>📜 專案啟動與歷史版本存檔</h2>
-      <p>本專案最初啟動於 <strong>2026/04/22</strong>，當時以 macOS 平台的 <code>Local State</code> 檔為研究基礎，撰寫了第一版「Chrome Glic 顯示判定研究報告」。</p>
+      <p>本專案最初啟動於 <strong>2026/04/22</strong>，當時以 macOS 平台的 <code>Local State</code> 檔為研究基礎，撰寫了第一版「Chrome 內建 Gemini 智慧側邊欄 顯示判定研究報告」。</p>
       <p>如果您需要查閱最初專案啟動時的分析邏輯、系統分層觀察參數及歷史操作流程，請點擊下方連結：</p>
       <a class="download-link secondary" href="history/20260422/index.html" style="margin-top: 6px;">📖 查閱 2026/04/22 專案啟動歷史版本</a>
     </section>
