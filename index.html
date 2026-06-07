@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Falo x Force Cheng 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。融入 Force 老師教學理念，不只會做，更懂道理，將知識內化為可自主升級的跨平台武器。">
-  <meta name="keywords" content="Falo, Force Cheng, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版, AI 教學理念">
+  <meta name="description" content="FALO 案例資產化研究：從真實故障（Chrome Glic）到 FALO 能力包（Capability Pack）的轉化歷程與人機協作（HITL）實踐。">
+  <meta name="keywords" content="FALO Methodology, Fast Audit Lean Open, Capability Pack, AI Agent, Human-in-the-Loop, HITL, KM, Runtime, Chrome Glic">
   <meta name="author" content="Falo x Force Cheng">
   <meta name="copyright" content="Falo x Force Cheng 版權宣告 2026/6/6，教學展示用">
   <meta name="robots" content="index,follow">
   <meta name="geo.region" content="TW">
   <meta name="geo.placename" content="Taiwan">
-  <title>Chrome Glic 通用版更新與 AI 人機協作指引 - Force 老師 AI 教學理念實踐</title>
+  <title>從故障到能力包：FALO 精神的案例實踐 (FALO Case Study)</title>
   <style>
     :root {
       --bg: #f5f1e8;
@@ -24,6 +24,8 @@
       --shadow: 0 18px 44px rgba(36, 38, 41, 0.08);
       --success: #15803d;
       --success-soft: #dcfce7;
+      --falo-gold: #b45309;
+      --falo-gold-soft: #fef3c7;
     }
 
     * {
@@ -47,52 +49,63 @@
     }
 
     .hero {
-      background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(255, 253, 249, 0.95));
-      border: 1px solid rgba(15, 118, 110, 0.18);
+      background: linear-gradient(135deg, rgba(180, 83, 9, 0.08), rgba(255, 253, 249, 0.95));
+      border: 1px solid rgba(180, 83, 9, 0.18);
       border-radius: 26px;
-      padding: 34px;
+      padding: 40px;
       box-shadow: var(--shadow);
       margin-bottom: 22px;
     }
 
     .tag {
       display: inline-block;
-      padding: 6px 10px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: var(--falo-gold-soft);
+      color: var(--falo-gold);
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     h1 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 40px);
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 42px);
       line-height: 1.2;
       letter-spacing: -0.02em;
+      color: #78350f;
     }
 
     .hero p {
       margin: 0;
-      font-size: 17px;
+      font-size: 18px;
       color: var(--muted);
+      line-height: 1.6;
     }
 
     .card {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 20px;
-      padding: 28px;
+      padding: 32px;
       box-shadow: var(--shadow);
       margin-bottom: 22px;
     }
 
     h2 {
-      margin: 0 0 16px;
-      font-size: 22px;
-      border-bottom: 2px solid var(--accent-soft);
+      margin: 0 0 18px;
+      font-size: 24px;
+      color: #78350f;
+      border-bottom: 2px solid var(--falo-gold-soft);
       padding-bottom: 8px;
+    }
+
+    h3 {
+      margin: 22px 0 12px;
+      font-size: 18px;
+      color: var(--accent);
     }
 
     p {
@@ -106,6 +119,43 @@
 
     li + li {
       margin-top: 8px;
+    }
+
+    /* Timeline Styling */
+    .timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 30px;
+      border-left: 3px solid var(--falo-gold-soft);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -37px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--falo-gold);
+      border: 2px solid var(--paper);
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #78350f;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--muted);
     }
 
     .grid {
@@ -132,9 +182,10 @@
     }
 
     .metric span {
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 14px;
       color: var(--muted);
+      line-height: 1.5;
+      display: block;
     }
 
     code, pre {
@@ -161,14 +212,14 @@
     }
 
     .quote {
-      border-left: 4px solid var(--accent);
+      border-left: 4px solid var(--falo-gold);
       padding-left: 16px;
-      color: #174e49;
+      color: #78350f;
       font-weight: 600;
-      background: var(--accent-soft);
-      padding: 12px 16px;
+      background: var(--falo-gold-soft);
+      padding: 14px 18px;
       border-radius: 0 12px 12px 0;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .download-grid {
@@ -205,16 +256,6 @@
       background: #e6dfd3;
     }
 
-    .alert-box {
-      border: 1px solid rgba(21, 128, 61, 0.2);
-      background: var(--success-soft);
-      color: var(--success);
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 22px;
-      font-weight: 600;
-    }
-
     .copyright-banner,
     .copyright-footer {
       color: #b91c1c;
@@ -238,33 +279,72 @@
     <div class="copyright-banner">Falo x Force Cheng 版權宣告 2026/6/6｜教學展示用</div>
 
     <section class="hero">
-      <div class="tag">AI Human-Agent Collaboration</div>
-      <h1>Chrome Glic 通用版更新與 AI 人機協作指引</h1>
-      <p>融入 Force 老師的 AI 教學心法：不只會做，更懂道理。讓我們學會拆解系統、內化知識，並將其轉化為可自主修復與升級的跨平台通用武器。</p>
+      <div class="tag">FALO Methodology Case Study</div>
+      <h1>從故障到能力包：FALO 精神的案例實踐</h1>
+      <p>這不是一份單純的「Chrome Glic 修復指南」，而是 FALO 如何將一個日常技術障礙，透過範例學習與遷移學習，轉化為可教學、可複製、可交接且由 AI Agent 運行的「能力包（Capability Pack）」的資產化歷程。</p>
     </section>
 
-    <section class="card">
-      <h2>📜 歷史版本存檔與專案啟動</h2>
-      <p>本專案最初啟動於 <strong>2026/04/22</strong>，當時以 macOS 平台的 <code>Local State</code> 檔為研究基礎，撰寫了第一版「Chrome Glic 顯示判定研究報告」。</p>
-      <p>如果您需要查閱最初專案啟動時的分析邏輯、系統分層觀察參數及歷史操作流程，請點擊下方連結：</p>
-      <a class="download-link secondary" href="history/20260422/index.html" style="margin-top: 6px;">📖 查閱 2026/04/22 專案啟動歷史版本</a>
-    </section>
+    <div class="quote">
+      <strong>FALO 的核心訊息</strong>：我們真正想展示的不是 Glic 本身的修復，而是我們如何將一次偶然的問題排查，解構、提煉並沉澱為一套能讓其他人（人機協作）甚至 AI 代理（AI Agent）複製成功的體系化能力。
+    </div>
 
+    <!-- 1. 《從故障到能力包》流程圖 -->
     <section class="card">
-      <h2>1. 更新的緣由與文件目的（Force 老師 AI 教學心法）</h2>
-      <p>這份文件與工具不僅僅是為了一個「一鍵修復」的結果，而是為了解釋軟體系統底層運作的道理，並將其轉化為您隨時可以自行升級的思維武器：</p>
+      <h2>🚀 FALO 實踐心法：從故障到能力包的六大層次</h2>
+      <p>本專案嚴格遵循 FALO 方法論，將一次性的問題排查，透過系統化的方式層層遞進，轉化為可重複利用的知識資產：</p>
       
-      <h3>💡 Chrome Gemini (Glic) 的優點與突然不能用的痛點</h3>
-      <p><strong>Glic</strong> 是 Google Chrome 原生嵌入的側邊欄 AI 助手。其核心優勢在於<strong>深度整合工作流</strong>：它能即時讀取並理解您當前分頁的內容，進行跨分頁的資料交互，且完全不需要您手動複製貼上或頻繁切換視窗。</p>
-      <p>然而，因為該功能目前仍在測試（Beta）階段，並受到嚴格的地區限制（限美國 IP）。這就導致了**「偶爾原本能用、但更新後突然消失」**的狀況。這是因為 Chrome 每次升級或重新整理快取時，都會重置 `Local State`，強制重新發送地區判定。這正是我們必須理解其判定邏輯、進行自我修復的原因。</p>
-
-      <h3>💻 從 Mac 專屬版拓散至 Windows 通用版</h3>
-      <p>專案最初是為了排查 Mac 使用者的問題。但本著<strong>「遷移學習」與「擴散」</strong>的工程精神，我們拒絕寫死固定的路徑。我們重新分析了 Windows / Win365 的設定結構，將邏輯抽象化，改以 <code>python3</code> 動態判定平台與路徑。這使我們能為 Windows 平台的使用者開發出同樣的修復能力，將特定平台的解決方案，內化為跨平台的通用系統武器。</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-title">層次一：真實問題（Problem）➡️ 啟動研究</div>
+          <div class="timeline-desc">使用者面臨 Chrome Glic (Gemini Live in Chrome) 故障無法使用。不滿足於表面修復，而是以此為研究起點，探究底層機制的判定邏輯。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">層次二：問題分析（Analysis）➡️ 形成 Know-how</div>
+          <div class="timeline-desc">深入分析 <code>Local State</code> 全域設定檔與 <code>Preferences</code> 檔案，找出「地區一致性驗證」與「Glic 使用資格」的判定公式，形成第一版系統分析報告。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">層次三：工具化（Toolization）➡️ 降低人工門檻</div>
+          <div class="timeline-desc">拒絕一次性操作。將修復邏輯包裝為跨平台的 <code>patch_glic.py</code> 以及 Mac/Windows 一鍵雙擊腳本，減少繁雜的人工作業並排除路徑依賴。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">層次四：診斷化（Diagnostization）➡️ 讓 AI Agent 接手</div>
+          <div class="timeline-desc">傳統腳本如果失敗，人工便無能為力。我們設計了 <code>glic_diagnostics.json</code> 結構化診斷標準，一旦腳本執行異常，即主動向本機環境的 AI Agent 交接，讓 AI Agent 具備代為執行的能力。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">層次五：知識資產化（Assetization）➡️ 文件化與維護</div>
+          <div class="timeline-desc">整理專案 README、部署 Git 儲存庫、建立此 HTML 說明網頁，並規劃 AI Agent 系統提示詞（Prompt），將技術轉化為隨時可維運與交接的 KM 資產。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">層次六：能力包化（Capability Pack）➡️ 教學與導入</div>
+          <div class="timeline-desc">最終形成 FALO 精神的 **Capability Pack**。本專案不再只是修正工具，而是一套可以應用於實體教學、技術顧問、企業導入或 AI Agent 生態建構的範例資產。</div>
+        </div>
+      </div>
     </section>
 
+    <!-- 2. 人機協作 (HITL) 與 AI Agent 接手機制 -->
     <section class="card">
-      <h2>2. 通用型資源下載</h2>
-      <p>請將以下檔案放置在<strong>同一個目錄</strong>（推薦放於您電腦的「文件 (Documents)」資料夾中），以便腳本能正確相依呼叫：</p>
+      <h2>🤝 人機協作（HITL）與 AI Agent 接手概念</h2>
+      <p>現代化運維不應僅僅依賴人工，也不應迷信 100% 完美的自動化。本專案導入了 <strong>Human-in-the-Loop (HITL)</strong> 的分層處理概念：</p>
+      
+      <div class="grid">
+        <div class="metric">
+          <strong>第一層：人機協同自動化</strong>
+          <span>使用者雙擊執行一鍵修正檔（如 <code>.command</code> 或 <code>.bat</code>），系統自動呼叫 Python 核心嘗試在 2 秒內完成自動化修復。</span>
+        </div>
+        <div class="metric">
+          <strong>第二層：AI Agent 故障接管</strong>
+          <span>若環境受阻（例如 macOS Sequoia 移除了右鍵 bypass 快速捷徑，造成操作門檻大增），腳本會生成結構化的診斷檔，並將意圖委託給本機的 AI Agent。</span>
+        </div>
+      </div>
+
+      <h3>為什麼需要 AI Agent 協助？</h3>
+      <p>隨著作業系統安全性不斷提高（例如 macOS Sequoia Gatekeeper 的嚴格限制），手動繞過安全機制的門檻愈來愈高。一般使用者在遇到自動化腳本報錯時，往往無力手動解析數十萬字元的單行 JSON 設定檔。而本機環境的 <strong>AI Agent</strong> 擁有彈性的推理能力，能直接讀取 <code>glic_diagnostics.json</code>，並調用自身的 file_edit 工具在背景直接執行設定覆寫，徹底解決操作門檻問題。</p>
+    </section>
+
+    <!-- 3. 通用型資源下載 -->
+    <section class="card">
+      <h2>🛠️ 通用型資源下載與文件定位</h2>
+      <p>本專案將複雜的排查動作，轉化為以下三隻互相解耦、可由 AI Agent 或人工調用的核心程式碼：</p>
       
       <div class="download-grid">
         <a class="download-link" href="patch_glic.py" download="patch_glic.py">🐍 下載 patch_glic.py (通用 Python 核心)</a>
@@ -288,80 +368,63 @@
           </ul>
         </div>
       </details>
-    </section>
 
-    <section class="card">
-      <h2>3. Windows / Mac 通用版使用說明</h2>
-      <p>此通用版採用 <code>python3</code> 自動判別 OS 平台、動態定位您當前的 Chrome `Local State` 路徑，並執行無痛覆寫。操作步驟如下：</p>
-      
+      <h3 style="margin-top: 22px;">⚙️ Windows / Mac 雙擊執行說明</h3>
       <div class="grid">
         <div class="metric">
           <strong>🍎 macOS 執行方式 (包含 Sequoia 新安全設定)</strong>
           <span>
-            <ol>
-              <li>將上述三個檔案下載並放在同一個資料夾。</li>
-              <li>在 Finder 中對 <code>patch_glic.command</code> 連點兩下，系統會跳出安全性警告（請點選「完成」或關閉警告）。</li>
-              <li>開啟 Mac 的 <strong>「系統設定 (System Settings)」 ➡️ 「隱私權與安全性 (Privacy & Security)」</strong>。</li>
-              <li>往下拉找到 <strong>「安全性 (Security)」</strong> 區段，點擊 <strong>「仍要開啟 (Open Anyway)」</strong>，並輸入密碼或使用 Touch ID。</li>
-              <li>重新雙擊 <code>patch_glic.command</code> 即可順利執行：關閉 Chrome ➡️ 修改設定 ➡️ 重啟 Chrome。</li>
-            </ol>
+            1. 將上述三個檔案下載並放在同一個資料夾。<br>
+            2. 在 Finder 中雙擊 <code>patch_glic.command</code>，系統跳出安全性警告（請點選「完成」或關閉警告）。<br>
+            3. 開啟 Mac 「系統設定」 ➡️ 「隱私權與安全性」，在「安全性」區段點擊「仍要開啟」，並驗證 Touch ID。<br>
+            4. 重新雙擊 <code>patch_glic.command</code> 即可順利執行修復。
           </span>
         </div>
         <div class="metric">
           <strong>💻 Windows 執行方式</strong>
           <span>
-            <ol>
-              <li>將上述三個檔案下載並放在同一個資料夾。</li>
-              <li>在檔案總管中對 <code>patch_glic.bat</code> 連點兩下。</li>
-              <li>系統會透過 Python 核心關閉 Chrome 進程 ➡️ 偽裝 US 地區鎖 ➡️ 重啟 Chrome。</li>
-            </ol>
+            1. 將上述三個檔案下載並放在同一個資料夾。<br>
+            2. 在檔案總管中對 <code>patch_glic.bat</code> 連點兩下。<br>
+            3. 腳本會自動關閉 Chrome ➡️ 偽裝 US 地區鎖 ➡️ 重新開啟 Chrome 即可完成。
           </span>
         </div>
       </div>
 
       <div class="quote" style="margin-top: 18px; background-color: #f3f4f6; border-left-color: #4b5563; color: #374151;">
         <strong>💡 終端機直接執行彈性 (Technical Tips)</strong>：<br>
-        <code>.command</code> 與 <code>.bat</code> 主要是為了**降低一般使用者的使用門檻**所設計的捷徑外殼。
-        如果您具備開發經驗，或是需要讓您的 AI Agent 自動執行，您完全可以跳過這兩個外殼，直接在終端機中切換至檔案目錄並執行原生 Python 指令：<br>
+        <code>.command</code> 與 <code>.bat</code> 主要是為了降低使用門檻的包裝外殼。
+        技術同仁或本機 AI Agent 可以直接在終端機中切換至檔案目錄並執行原生 Python 指令：<br>
         <code>python3 patch_glic.py</code> (Mac) 或 <code>python patch_glic.py</code> (Windows)<br>
         這可以避開 macOS Sequoia 等系統對外殼腳本的 Gatekeeper 阻擋，更具靈活度。
       </div>
     </section>
 
+    <!-- 4. 系統分析與 Glic 技術細節 -->
     <section class="card">
-      <h2>4. 委託 AI Agent 協助的方法與原因</h2>
-      <p>如果使用者的電腦因為以下因素，導致無法執行上述雙擊程式：</p>
-      <ul>
-        <li>環境中沒有安裝 <code>python3</code> 或環境變數未正確設定。</li>
-        <li><strong>系統安全阻擋升級</strong>：例如在 <strong>macOS Sequoia (或更新版本)</strong> 中，Apple 已正式**移除了按住 Control (右鍵) 直接強制開啟的快速捷徑**，使用者必須手動進入「系統設定」內層進行繁瑣的操作，增加了操作門檻。</li>
-        <li>執行權限被系統安全軟體（如 Windows Defender）完全封鎖。</li>
-        <li>Chrome 設定檔結構在未來更新後發生劇烈改變，導致腳本解析出錯。</li>
-      </ul>
+      <h2>📝 知識資產化：系統分層觀點與 Glic 技術細節</h2>
+      <p>這是我們分析 `Local State` 設定檔後所沉澱的技術參數，作為內部團隊進行遷移學習與深入研究的知識資產（KM）：</p>
       
-      <h3>為什麼要委託 AI Agent 協助？</h3>
-      <p>在安全性不斷提高的現代作業系統中（如 macOS Sequoia），手動繞過安全機制的門檻愈來愈高，且一般使用者在遇到自動化程式報錯時，通常無力手動解析數十萬字元的單行 JSON 設定檔。而您電腦中的 **AI Agent**（例如內建的終端開發助手，或具備本機檔案讀寫權限的 AI 助理）擁有更靈活的推理能力，能直接讀取診斷日誌並在後台代為執行精準修復，省去繁瑣的手動設定流程。</p>
+      <pre>Local State 全域設定：
+- variations_country (全域地區標記)
+- variations_permanent_consistency_country (版本永久地區鎖)
+- glic.is_glic_eligible (全域 Glic 資格)
+- glic.launcher_enabled (全域啟動器啟用狀態)
+- profile.info_cache.&lt;profile&gt;.is_glic_eligible (各 Profile 個別 Glic 資格)
+- browser.enabled_labs_experiments (已開啟的實驗旗標，包括 glic-actor@1 等)
 
-      <h3>委託 AI Agent 的操作方法（概念性架構）：</h3>
-      <div class="quote">
-        <strong>交接模式 (Handover Pattern)</strong>：<br>
-        1. 當啟動腳本執行失敗時，會自動在目錄下產生一個名為 <code>glic_diagnostics.json</code> 的結構化診斷檔。<br>
-        2. 使用者只需將此檔案上傳給本機 AI Agent，或是直接在與 AI Agent 對話中輸入：<br>
-        <code>「我的 Glic 修正腳本失敗了，請讀取 diagnostics.json 並幫我修改 Local State 設定檔。」</code><br>
-        3. AI Agent 讀取 JSON 後，便能越過 Python 的環境限制，直接調用自己的 file_edit 工具來精準修改對應路徑的設定檔。
-      </div>
+系統外部訊號：
+- macOS AppleLocale / AppleLanguages
+- Windows culture / home location
+- Chrome executable path & profile-directory</pre>
+      <p>理解這些參數是為了對系統狀態進行 before / after 的比對與驗證，這就是 FALO 的 Audit（審計）與 Lean（精益）精神的體現。</p>
+    </section>
 
-      <p><strong>自動生成的診斷檔案 (概念範例)：</strong></p>
-      <pre>{
-  "status": "failed",
-  "error_type": "PYTHON_ENVIRONMENT_ERROR",
-  "os_detected": "darwin",
-  "expected_local_state_path": "/Users/username/Library/Application Support/Google/Chrome/Local State",
-  "required_patch": {
-    "variations_country": "us",
-    "variations_permanent_consistency_country": ["current_version", "us"],
-    "glic.is_glic_eligible": true
-  }
-}</pre>
+    <!-- 5. 歷史存檔與啟動連結 -->
+    <section class="card">
+      <h2>📜 專案啟動與歷史版本存檔</h2>
+      <p>本專案最初啟動於 <strong>2026/04/22</strong>，當時以 macOS 平台的 <code>Local State</code> 檔為研究基礎，撰寫了第一版「Chrome Glic 顯示判定研究報告」。</p>
+      <p>如果您需要查閱最初專案啟動時的分析邏輯、系統分層觀察參數及歷史操作流程，請點擊下方連結：</p>
+      <a class="download-link secondary" href="history/20260422/index.html" style="margin-top: 6px;">📖 查閱 2026/04/22 專案啟動歷史版本</a>
     </section>
 
     <div class="copyright-footer">Falo x Force Cheng 版權宣告 2026/6/6｜本頁僅供教學展示、案例研究與內部學習使用</div>
