@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Force Cheng x Falo 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。">
+  <meta name="keywords" content="Force Cheng, Falo, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版">
+  <meta name="author" content="Force Cheng x Falo">
+  <meta name="copyright" content="Force Cheng x Falo 版權宣告 2026/6/7，教學展示用">
+  <meta name="robots" content="index,follow">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.placename" content="Taiwan">
+  <title>Chrome Glic 通用版更新與 AI 人機協作指引</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf9;
+      --ink: #1f2937;
+      --muted: #5f6b7a;
+      --line: #ddd3c5;
+      --accent: #0f766e;
+      --accent-soft: #def3ef;
+      --code: #f2ede3;
+      --shadow: 0 18px 44px rgba(36, 38, 41, 0.08);
+      --success: #15803d;
+      --success-soft: #dcfce7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.10), transparent 30%),
+        linear-gradient(180deg, #f8f5ed 0%, #f0ebe0 100%);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(255, 253, 249, 0.95));
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 22px;
+      border-bottom: 2px solid var(--accent-soft);
+      padding-bottom: 8px;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    ul, ol {
+      margin: 0 0 16px 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: #fffaf2;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric span {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", "Menlo", "Monaco", monospace;
+    }
+
+    code {
+      background: var(--code);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #b91c1c;
+      font-size: 14px;
+    }
+
+    pre {
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 14px;
+    }
+
+    .quote {
+      border-left: 4px solid var(--accent);
+      padding-left: 16px;
+      color: #174e49;
+      font-weight: 600;
+      background: var(--accent-soft);
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 18px;
+    }
+
+    .download-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .download-link:hover {
+      background: #0d645e;
+    }
+
+    .download-link.secondary {
+      background: var(--code);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .download-link.secondary:hover {
+      background: #e6dfd3;
+    }
+
+    .alert-box {
+      border: 1px solid rgba(21, 128, 61, 0.2);
+      background: var(--success-soft);
+      color: var(--success);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .copyright-banner,
+    .copyright-footer {
+      color: #b91c1c;
+      font-weight: 800;
+      border: 1px solid rgba(185, 28, 28, 0.22);
+      background: #fff1f1;
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .copyright-footer {
+      margin-top: 18px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="copyright-banner">Force Cheng x Falo 版權宣告 2026/6/7｜教學展示用</div>
+
+    <section class="hero">
+      <div class="tag">Universal Version Update</div>
+      <h1>Chrome Glic 通用版更新與 AI 人機協作指引</h1>
+      <p>本文件說明當 Glic 判定邏輯更新時，如何使用「跨平台通用版腳本」進行一鍵修正，以及在自動化環境受限時，如何引導本機環境的 AI Agent 介入協同處理的設計概念。</p>
+    </section>
+
+    <section class="card">
+      <h2>1. 更新的緣由與文件目的</h2>
+      <p>原本的 Glic 排查研究著重於特定平台（如 macOS 專用指令碼）與固定路徑的設定修復。然而在實際跨平台協作中，我們發現了兩大挑戰：</p>
+      <ul>
+        <li><strong>平台環境動態多變</strong>：Mac 的路徑和 Windows 的路徑截然不同。此外，不同使用者的使用者名稱與 Chrome Profile 設定檔路徑也各異，寫死固定路徑的專屬版腳本容易失效。</li>
+        <li><strong>環境依賴與限制</strong>：在某些本機環境（如權限受限、未安裝 Python 3 或不支援 AppleScript 等情況下），傳統自動化腳本會直接報錯中斷，缺乏容錯與替代手段。</li>
+      </ul>
+      <div class="quote">
+        <strong>本文件目的</strong>：提供一套<strong>「通用型」</strong>的地區修正指令，使 Windows/Mac 使用者皆能以同一核心邏輯執行偽裝；並建立<strong>「AI Agent 協同修正」</strong>架構概念，在傳統自動化程序無法執行時，無痛將控制權轉移給使用者電腦當前的 AI Agent 來代理執行。
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. 通用型資源下載</h2>
+      <p>請將以下檔案放置在<strong>同一個目錄</strong>（推薦放於您電腦的「文件 (Documents)」資料夾中），以便腳本能正確相依呼叫：</p>
+      
+      <div class="download-grid">
+        <a class="download-link" href="patch_glic.py" download="patch_glic.py">🐍 下載 patch_glic.py (通用 Python 核心)</a>
+        <a class="download-link secondary" href="patch_glic.command" download="patch_glic.command">🍎 下載 patch_glic.command (Mac 啟動器)</a>
+        <a class="download-link secondary" href="patch_glic.bat" download="patch_glic.bat">💻 下載 patch_glic.bat (Windows 啟動器)</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Windows / Mac 通用版使用說明</h2>
+      <p>此通用版採用 <code>python3</code> 自動判別 OS 平台、動態定位您當前的 Chrome `Local State` 路徑，並執行無痛覆寫。操作步驟如下：</p>
+      
+      <div class="grid">
+        <div class="metric">
+          <strong>🍎 macOS 執行方式</strong>
+          <span>
+            <ol>
+              <li>將上述三個檔案下載並放在同一個資料夾。</li>
+              <li>在 Finder 中對 <code>patch_glic.command</code> 連點兩下。</li>
+              <li>系統會自動：關閉 Chrome ➡️ 修改設定 ➡️ 自動重啟 Chrome 並加載 Glic。</li>
+            </ol>
+          </span>
+        </div>
+        <div class="metric">
+          <strong>💻 Windows 執行方式</strong>
+          <span>
+            <ol>
+              <li>將上述三個檔案下載並放在同一個資料夾。</li>
+              <li>在檔案總管中對 <code>patch_glic.bat</code> 連點兩下。</li>
+              <li>系統會透過 Python 核心關閉 Chrome 進程 ➡️ 偽裝 US 地區鎖 ➡️ 重啟 Chrome。</li>
+            </ol>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. 委託 AI Agent 協助的方法與原因</h2>
+      <p>如果使用者的電腦因為以下因素，導致無法執行上述雙擊程式：</p>
+      <ul>
+        <li>環境中沒有安裝 <code>python3</code> 或環境變數未正確設定。</li>
+        <li>執行權限被系統（如 macOS Gatekeeper 或 Windows Defender）阻擋。</li>
+        <li>Chrome 設定檔結構在未來更新後發生劇烈改變，導致腳本解析出錯。</li>
+      </ul>
+      
+      <h3>為什麼要委託 AI Agent 協助？</h3>
+      <p>一般使用者在遇到自動化程式報錯時，通常無力閱讀原始碼或手動解析數十萬字元的單行 JSON 設定檔。而您電腦中的 **AI Agent**（例如內建的終端開發助手，或具備本機檔案讀寫權限的 AI 助理）擁有比單純的 Shell 腳本更靈活的推理與操作能力。</p>
+
+      <h3>委託 AI Agent 的操作方法（概念性架構）：</h3>
+      <div class="quote">
+        <strong>交接模式 (Handover Pattern)</strong>：<br>
+        1. 當啟動腳本執行失敗時，會自動在目錄下產生一個名為 <code>glic_diagnostics.json</code> 的結構化診斷檔。<br>
+        2. 使用者只需將此檔案上傳給本機 AI Agent，或是直接在與 AI Agent 對話中輸入：<br>
+        <code>「我的 Glic 修正腳本失敗了，請讀取 diagnostics.json 並幫我修改 Local State 設定檔。」</code><br>
+        3. AI Agent 讀取 JSON 後，便能越過 Python 的環境限制，直接調用自己的 file_edit 工具來精準修改對應路徑的設定檔。
+      </div>
+
+      <p><strong>自動生成的診斷檔案 (概念範例)：</strong></p>
+      <pre>{
+  "status": "failed",
+  "error_type": "PYTHON_ENVIRONMENT_ERROR",
+  "os_detected": "darwin",
+  "expected_local_state_path": "/Users/username/Library/Application Support/Google/Chrome/Local State",
+  "required_patch": {
+    "variations_country": "us",
+    "variations_permanent_consistency_country": ["current_version", "us"],
+    "glic.is_glic_eligible": true
+  }
+}</pre>
+    </section>
+
+    <div class="copyright-footer">Force Cheng x Falo 版權宣告 2026/6/7｜本頁僅供教學展示、案例研究與內部學習使用</div>
+  </div>
+</body>
+</html>
