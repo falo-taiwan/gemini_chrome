@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Falo x Force Cheng 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。">
-  <meta name="keywords" content="Falo, Force Cheng, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版">
+  <meta name="description" content="Falo x Force Cheng 教學展示用：Chrome Glic 通用版更新與 AI 人機協作指引。融入 Force 老師教學理念，不只會做，更懂道理，將知識內化為可自主升級的跨平台武器。">
+  <meta name="keywords" content="Falo, Force Cheng, Chrome Glic, Gemini in Chrome, AI Agent, 人機協作, 遷移學習, 通用版, AI 教學理念">
   <meta name="author" content="Falo x Force Cheng">
   <meta name="copyright" content="Falo x Force Cheng 版權宣告 2026/6/6，教學展示用">
   <meta name="robots" content="index,follow">
   <meta name="geo.region" content="TW">
   <meta name="geo.placename" content="Taiwan">
-  <title>Chrome Glic 通用版更新與 AI 人機協作指引</title>
+  <title>Chrome Glic 通用版更新與 AI 人機協作指引 - Force 老師 AI 教學理念實踐</title>
   <style>
     :root {
       --bg: #f5f1e8;
@@ -238,9 +238,9 @@
     <div class="copyright-banner">Falo x Force Cheng 版權宣告 2026/6/6｜教學展示用</div>
 
     <section class="hero">
-      <div class="tag">Universal Version Update</div>
+      <div class="tag">AI Human-Agent Collaboration</div>
       <h1>Chrome Glic 通用版更新與 AI 人機協作指引</h1>
-      <p>本文件說明當 Glic 判定邏輯更新時，如何使用「跨平台通用版腳本」進行一鍵修正，以及在自動化環境受限時，如何引導本機環境的 AI Agent 介入協同處理的設計概念。</p>
+      <p>融入 Force 老師的 AI 教學心法：不只會做，更懂道理。讓我們學會拆解系統、內化知識，並將其轉化為可自主修復與升級的跨平台通用武器。</p>
     </section>
 
     <section class="card">
@@ -251,15 +251,15 @@
     </section>
 
     <section class="card">
-      <h2>1. 更新的緣由與文件目的</h2>
-      <p>原本的 Glic 排查研究著重於特定平台（如 macOS 專用指令碼）與固定路徑的設定修復。然而在實際跨平台協作中，我們發現了兩大挑戰：</p>
-      <ul>
-        <li><strong>平台環境動態多變</strong>：Mac 的路徑和 Windows 的路徑截然不同。此外，不同使用者的使用者名稱與 Chrome Profile 設定檔路徑也各異，寫死固定路徑的專屬版腳本容易失效。</li>
-        <li><strong>環境依賴與限制</strong>：在某些本機環境（如權限受限、未安裝 Python 3 或不支援 AppleScript 等情況下），傳統自動化腳本會直接報錯中斷，缺乏容錯與替代手段。</li>
-      </ul>
-      <div class="quote">
-        <strong>本文件目的</strong>：提供一套<strong>「通用型」</strong>的地區修正指令，使 Windows/Mac 使用者皆能以同一核心邏輯執行偽裝；並建立<strong>「AI Agent 協同修正」</strong>架構概念，在傳統自動化程序無法執行時，無痛將控制權轉移給使用者電腦當前的 AI Agent 來代理執行。
-      </div>
+      <h2>1. 更新的緣由與文件目的（Force 老師 AI 教學心法）</h2>
+      <p>這份文件與工具不僅僅是為了一個「一鍵修復」的結果，而是為了解釋軟體系統底層運作的道理，並將其轉化為您隨時可以自行升級的思維武器：</p>
+      
+      <h3>💡 Chrome Gemini (Glic) 的優點與突然不能用的痛點</h3>
+      <p><strong>Glic</strong> 是 Google Chrome 原生嵌入的側邊欄 AI 助手。其核心優勢在於<strong>深度整合工作流</strong>：它能即時讀取並理解您當前分頁的內容，進行跨分頁的資料交互，且完全不需要您手動複製貼上或頻繁切換視窗。</p>
+      <p>然而，因為該功能目前仍在測試（Beta）階段，並受到嚴格的地區限制（限美國 IP）。這就導致了**「偶爾原本能用、但更新後突然消失」**的狀況。這是因為 Chrome 每次升級或重新整理快取時，都會重置 `Local State`，強制重新發送地區判定。這正是我們必須理解其判定邏輯、進行自我修復的原因。</p>
+
+      <h3>💻 從 Mac 專屬版拓散至 Windows 通用版</h3>
+      <p>專案最初是為了排查 Mac 使用者的問題。但本著<strong>「遷移學習」與「擴散」</strong>的工程精神，我們拒絕寫死固定的路徑。我們重新分析了 Windows / Win365 的設定結構，將邏輯抽象化，改以 <code>python3</code> 動態判定平台與路徑。這使我們能為 Windows 平台的使用者開發出同樣的修復能力，將特定平台的解決方案，內化為跨平台的通用系統武器。</p>
     </section>
 
     <section class="card">
@@ -317,6 +317,14 @@
             </ol>
           </span>
         </div>
+      </div>
+
+      <div class="quote" style="margin-top: 18px; background-color: #f3f4f6; border-left-color: #4b5563; color: #374151;">
+        <strong>💡 終端機直接執行彈性 (Technical Tips)</strong>：<br>
+        <code>.command</code> 與 <code>.bat</code> 主要是為了**降低一般使用者的使用門檻**所設計的捷徑外殼。
+        如果您具備開發經驗，或是需要讓您的 AI Agent 自動執行，您完全可以跳過這兩個外殼，直接在終端機中切換至檔案目錄並執行原生 Python 指令：<br>
+        <code>python3 patch_glic.py</code> (Mac) 或 <code>python patch_glic.py</code> (Windows)<br>
+        這可以避開 macOS Sequoia 等系統對外殼腳本的 Gatekeeper 阻擋，更具靈活度。
       </div>
     </section>
 
